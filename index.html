@@ -341,6 +341,36 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
   .marquee .track { animation: none; }
   .js .rv, .js .hero-name .row > span { opacity: 1; transform: none; transition: none; }
 }
+
+/* Audience switcher (hero) */
+.aud { margin-top: 40px; max-width: 46ch; }
+.aud-tabs { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-bottom: 14px; }
+.aud-tabs button { all: unset; cursor: pointer; font: 400 11px/1.8 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+.aud-tabs button:hover, .aud-tabs button[aria-selected="true"] { color: var(--ink); }
+.aud-tabs button[aria-selected="true"] { text-decoration: underline; text-underline-offset: 5px; }
+.aud-tabs button:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+.aud-text { font: 400 clamp(18px, 1.6vw, 22px)/1.45 var(--f-body); color: var(--ink); letter-spacing: -.01em; min-height: 4.4em; }
+@media (prefers-reduced-motion: no-preference) { .aud-text.swap { animation: wordIn .6s cubic-bezier(.2,.7,.2,1); } }
+
+/* Values */
+.values { list-style: none; padding: 0; margin: 72px 0 0; display: grid; gap: 4px; justify-items: center; }
+.values li { display: grid; justify-items: center; }
+.values span { font: 300 clamp(40px, 6.4vw, 88px)/1 var(--f-display); letter-spacing: -.045em; color: var(--ink); }
+.values small { font: 400 10.5px/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin: 8px 0 18px; }
+
+/* Experience, one role at a time */
+.xp { max-width: 860px; }
+.xp li { padding: 30px 0; }
+.xp .co { font: 400 11px/1.6 var(--f-mono) !important; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px !important; }
+.xp h3 { font: 300 clamp(28px, 3.2vw, 42px)/1.05 var(--f-display); letter-spacing: -.04em; }
+.xp p { margin-top: 12px; color: var(--text); }
+
+/* Section index (bottom-left) */
+.c-bl ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; }
+.c-bl a { text-decoration: none; color: var(--muted); transition: color .3s, padding .3s; }
+.c-bl a:hover { color: var(--ink); }
+.c-bl a[aria-current="true"] { color: var(--ink); padding-left: 10px; position: relative; }
+.c-bl a[aria-current="true"]::before { content: ""; position: absolute; left: 0; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: var(--ink); }
 </style>
 </head>
 <body>
@@ -353,7 +383,7 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
 <div class="corner c-tr"><span class="hide-sm">Casablanca <span class="clock" id="clock">--:--:--</span></span>
   <a class="cv-btn" href="hind-seddik-cv.pdf" download="Hind-Seddik-CV.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>CV · PDF</a>
 </div>
-<div class="corner c-bl" aria-live="polite">Section: <b id="secName">Intro</b></div>
+<nav class="corner c-bl" aria-label="Sections"><ol id="secNav"></ol><b id="secName" hidden>Intro</b></nav>
 <div class="corner c-br"><span id="secNum">01</span><span class="progress"><i id="bar"></i></span><span>09</span></div>
 
 <main>
@@ -361,7 +391,12 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
     <div class="col">
       <h1 class="hero-name"><span class="row"><span style="--d:.15s">hind</span></span><span class="row"><span class="outline" style="--d:.3s">seddik</span></span></h1>
       <div class="hero-sub rv" style="--d:.7s"><span>Product Designer</span><span>UX Research</span><span>Design Systems</span><span>AI-augmented</span></div>
-      <p class="hero-note rv" style="--d:.85s">Product Design Consultant in Casablanca. 14 years turning complex needs into simple products.</p>
+      <div class="aud rv" style="--d:.85s">
+        <div class="aud-tabs" role="tablist" aria-label="Read this as">
+          <button type="button" role="tab" aria-selected="true" data-a="0">For anyone</button><button type="button" role="tab" aria-selected="false" data-a="1">Recruiters</button><button type="button" role="tab" aria-selected="false" data-a="2">Product leads</button><button type="button" role="tab" aria-selected="false" data-a="3">Designers</button><button type="button" role="tab" aria-selected="false" data-a="4">Developers</button>
+        </div>
+        <p class="aud-text" id="audText" role="tabpanel" aria-live="polite">Product Design Consultant in Casablanca. 14 years turning complex needs into simple products.</p>
+      </div>
     </div>
     <div class="box-stage pf" id="boxStage" aria-label="A cloud of dots that rebuilds itself into each stage of Hind Seddik's process: listen, map, prototype, systemise, measure, ship">
       <div class="pf-col pf-left">
@@ -391,6 +426,12 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
     <p class="tag rv">About</p>
     <p class="lede rv">I work across the whole product process, from discovery to delivery. I run the research and workshops that tell a team <em>what to build first</em>, then stay with designers and developers until it ships.</p>
     <p class="body-copy rv" style="margin-top:36px;--d:.15s">With 14 years in product design, rooted in multimedia and graphic design, I now lead research, prototyping and design systems for telecom operators, banks and fintechs. I currently lead UX on Orange Maroc's main redesigns.</p>
+    <ul class="values" aria-label="How I work">
+      <li class="rv"><span>Listen first</span><small>Research before pixels</small></li>
+      <li class="rv" style="--d:.08s"><span>Keep it simple</span><small>Complex needs, clear products</small></li>
+      <li class="rv" style="--d:.16s"><span>Test early</span><small>Real users, every round</small></li>
+      <li class="rv" style="--d:.24s"><span>Ship together</span><small>With designers and developers</small></li>
+    </ul>
   </section>
 
   <section class="sec" id="ai" data-shape="network" data-name="AI">
@@ -418,20 +459,20 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
       <p class="tag rv">Experience</p>
       <h2 class="big rv">14 years <span class="outline">of practice</span></h2>
       <ul class="xp">
-        <li class="group">Independent consultant · since March 2021</li>
-        <li class="rv"><span class="d">Dec 2025 – now</span><div><h3>Orange Maroc <small>Lead UX Designer</small></h3><p>I lead UX on Max it, Orange.ma, Orange Money and the data dashboards, and help teams adopt a shared UX method as part of Orange's design transformation.</p></div><span class="len">Ongoing</span></li>
-        <li class="rv"><span class="d">Sep – Nov 2025</span><div><h3>Al Barid Bank <small>Trainer</small></h3><p>Designed and delivered a professional training program to 12 groups of employees, from course content to live sessions.</p></div><span class="len">~3 mo</span></li>
-        <li class="rv"><span class="d">May – Aug 2025</span><div><h3>BMCE Capital</h3><p>Designed the BMCE Capital Gestion mobile app, making investment management clear and easy to follow.</p></div><span class="len">~3.5 mo · short</span></li>
-        <li class="rv"><span class="d">Mar – May 2025</span><div><h3>Marjane</h3><p>Turned the Marjane One app redesign into detailed, interactive Figma prototypes.</p></div><span class="len">~2.5 mo · short</span></li>
-        <li class="rv"><span class="d">Dec 2023 – Feb 2025</span><div><h3>Label'Vie</h3><p>Redesigned the merchant and delivery apps with drivers and store managers, simplifying order flows to reduce errors.</p></div><span class="len">15 mo</span></li>
-        <li class="rv"><span class="d">Jun – Nov 2023</span><div><h3>MLnetworks</h3><p>Designed an AI platform that helps operators optimise their networks, from simulation tools to predictive dashboards.</p></div><span class="len">6 mo</span></li>
-        <li class="rv"><span class="d">Jan 2022 – May 2023</span><div><h3>Crédit du Maroc</h3><p>Audited the MyCDM app, built its new design system and simplified onboarding and transactions.</p></div><span class="len">17 mo</span></li>
-        <li class="rv"><span class="d">Mar – Dec 2021</span><div><h3>Intelcia</h3><p>Designed ConverseQuery, a generative-AI chatbot refined over 7 rounds of user testing, plus the MyCapa and Alert'in tools.</p></div><span class="len">~10 mo</span></li>
+        <li class="group">Independent consultant · Casablanca · since March 2021</li>
+        <li class="rv"><span class="d">Dec 2025 – now</span><div><p class="co">Orange Maroc</p><h3>Lead UX Designer</h3><p>I lead UX on Max it, Orange.ma, Orange Money and the data dashboards, and help teams adopt a shared UX method as part of Orange's design transformation.</p></div><span class="len">Ongoing</span></li>
+        <li class="rv"><span class="d">Sep – Nov 2025</span><div><p class="co">Al Barid Bank</p><h3>Trainer</h3><p>I designed and delivered a professional training program for 12 groups of employees, from course content to live sessions.</p></div><span class="len">~3 mo</span></li>
+        <li class="rv"><span class="d">May – Aug 2025</span><div><p class="co">BMCE Capital</p><h3>Investment app</h3><p>I designed the BMCE Capital Gestion mobile app, making investment management clear and easy to follow.</p></div><span class="len">~3.5 mo · short</span></li>
+        <li class="rv"><span class="d">Mar – May 2025</span><div><p class="co">Marjane</p><h3>App redesign</h3><p>I turned the Marjane One app redesign into detailed, interactive Figma prototypes.</p></div><span class="len">~2.5 mo · short</span></li>
+        <li class="rv"><span class="d">Dec 2023 – Feb 2025</span><div><p class="co">Label'Vie</p><h3>Merchant &amp; delivery apps</h3><p>I redesigned the merchant and delivery apps with drivers and store managers, simplifying order flows to reduce errors.</p></div><span class="len">15 mo</span></li>
+        <li class="rv"><span class="d">Jun – Nov 2023</span><div><p class="co">MLnetworks</p><h3>AI telecom platform</h3><p>I designed simulation tools and predictive dashboards for an AI platform that helps operators optimise their networks, with teams in the UK, Dubai and India.</p></div><span class="len">6 mo</span></li>
+        <li class="rv"><span class="d">Jan 2022 – May 2023</span><div><p class="co">Crédit du Maroc</p><h3>Banking app &amp; design system</h3><p>I audited the MyCDM app, built its new design system and ran workshops to simplify onboarding and transactions after the acquisition.</p></div><span class="len">17 mo</span></li>
+        <li class="rv"><span class="d">Mar – Dec 2021</span><div><p class="co">Intelcia</p><h3>AI chatbot &amp; internal tools</h3><p>I designed ConverseQuery, a generative-AI chatbot refined over 7 rounds of user testing, plus the MyCapa and Alert'in tools.</p></div><span class="len">~10 mo</span></li>
         <li class="group">Before</li>
-        <li class="rv"><span class="d">2019 – 2021</span><div><h3>Teal Technology Services <small>Senior UX &amp; UI</small></h3><p>Ran user interviews and usability tests, built prototypes and shared design components for IBM and OCP teams.</p></div><span class="len">1 yr 9 mo</span></li>
-        <li class="rv"><span class="d">2017 – 2019</span><div><h3>Piman Group <small>Lead UX &amp; UI</small></h3><p>Led a team of three designers on “Private Discuss”, a video and messaging platform, and dashboards for Adecco, Sanofi and STMicroelectronics.</p></div><span class="len">1 yr 8 mo</span></li>
-        <li class="rv"><span class="d">2015 – 2017</span><div><h3>BeWorkHappy <small>UX &amp; UI</small></h3><p>Shaped a recruitment platform built around CV matching, through UX workshops with stakeholders.</p></div><span class="len">2 yr 3 mo</span></li>
-        <li class="rv"><span class="d">2012 – 2015</span><div><h3>Freelance <small>Web designer</small></h3><p>Designed websites and visual identities for international clients.</p></div><span class="len">2 yr 7 mo</span></li>
+        <li class="rv"><span class="d">2019 – 2021</span><div><p class="co">Teal Technology Services</p><h3>Senior UX &amp; UI Designer</h3><p>Inside the IBM &amp; OCP joint venture, I ran user interviews and usability tests, built prototypes and shared design components.</p></div><span class="len">1 yr 9 mo</span></li>
+        <li class="rv"><span class="d">2017 – 2019</span><div><p class="co">Piman Group</p><h3>Lead UX &amp; UI Designer</h3><p>I led a team of three designers on “Private Discuss”, a video and messaging platform, and on dashboards for Adecco, Sanofi and STMicroelectronics.</p></div><span class="len">1 yr 8 mo</span></li>
+        <li class="rv"><span class="d">2015 – 2017</span><div><p class="co">BeWorkHappy</p><h3>UX &amp; UI Designer</h3><p>I shaped a recruitment platform built around CV matching, through UX workshops with stakeholders.</p></div><span class="len">2 yr 3 mo</span></li>
+        <li class="rv"><span class="d">2012 – 2015</span><div><p class="co">Freelance</p><h3>Web Designer</h3><p>I designed websites and visual identities for international clients.</p></div><span class="len">2 yr 7 mo</span></li>
       </ul>
     </div>
   </section>
@@ -658,6 +699,24 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
   const secs = [...document.querySelectorAll('section[data-shape]')];
   const nameEl = document.getElementById('secName'), numEl = document.getElementById('secNum'), bar = document.getElementById('bar');
   document.querySelector('.c-br span:last-child').textContent = String(secs.length).padStart(2, '0');
+  // Section index + audience switcher
+  const navEl = document.getElementById('secNav');
+  secs.forEach((sec, i) => { const li = document.createElement('li'), a = document.createElement('a'); a.href = '#' + sec.id; a.textContent = sec.dataset.name; if (!i) a.setAttribute('aria-current', 'true'); li.appendChild(a); navEl.appendChild(li); });
+  new MutationObserver(() => { const n = nameEl.textContent; navEl.querySelectorAll('a').forEach(a => a.setAttribute('aria-current', a.textContent === n ? 'true' : 'false')); }).observe(nameEl, { childList: true });
+  const AUD = [
+    "Product Design Consultant in Casablanca. 14 years turning complex needs into simple products.",
+    "Lead Product Designer with 14 years in banking, telecom and fintech, currently Lead UX at Orange Maroc. Based in Casablanca, working in Arabic, French and English.",
+    "I help teams decide what to build first: research and workshops up front, then prototypes tested with real users before anything ships.",
+    "I care about the system behind the screens: shared components, clear foundations and a UX method the whole team can follow.",
+    "I stay close until it ships: tidy Figma handoff, coded prototypes and design systems built to be reused."
+  ];
+  const audText = document.getElementById('audText'), audBtns = [...document.querySelectorAll('.aud-tabs button')];
+  audBtns.forEach(b => b.addEventListener('click', () => {
+    audBtns.forEach(x => x.setAttribute('aria-selected', x === b ? 'true' : 'false'));
+    audText.textContent = AUD[+b.dataset.a]; audText.classList.remove('swap'); void audText.offsetWidth; audText.classList.add('swap');
+  }));
+  audBtns.forEach((b, i) => b.addEventListener('keydown', e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d) { const n = audBtns[(i + d + audBtns.length) % audBtns.length]; n.focus(); n.click(); } }));
+
   function onScroll() {
     const mid = innerHeight * .5;
     let active = secs[0];
