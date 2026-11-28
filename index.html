@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hind Seddik — Product Designer</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta name="description" content="Hind Seddik, Product Design Consultant in Casablanca. UX research, prototyping, design systems and AI-augmented design for telecom, banking, fintech and retail.">
+<meta name="description" content="Hind Seddik, independent product design consultant in Casablanca with 14 years in design. UX leadership, research, prototyping and design systems for telecom, banking and retail.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600&display=swap">
@@ -414,6 +414,25 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
 }
 .only-touch { display: none; }
 @media (hover: none) { .only-touch { display: inline; } .hide-touch { display: none; } }
+
+/* Copy update: descriptor, audience label, experience cards */
+.hero-desc { display: block; }
+.aud-label { font: 400 10.5px/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+.xp li { grid-template-columns: minmax(0, 1fr); }
+.xp li h3 { margin: 0; }
+.xp li .co { margin: 10px 0 0 !important; color: var(--text) !important; }
+.xp li .d { display: block; padding: 0; margin-top: 4px; }
+.contact h2.big { max-width: 18ch; margin-inline: auto; }
+/* Desktop: keep room at the bottom of the hero for the lower-left section list */
+@media (min-width: 861px) { .hero { padding-bottom: 160px; } }
+/* Short desktop screens (e.g. 1280 x 720): keep the hero clear of the lower-left section list */
+@media (min-width: 861px) and (max-height: 940px) {
+  .hero { padding-top: 80px; align-content: start; }
+  .hero-name { font-size: min(11vw, 14vh); }
+  .hero-sub { margin-top: 22px; }
+  .aud { margin-top: 22px; }
+  .aud-text { min-height: 0; }
+}
 </style>
 </head>
 <body>
@@ -433,12 +452,13 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
   <section class="sec hero" id="intro" data-shape="drift" data-name="Intro">
     <div class="col">
       <h1 class="hero-name"><span class="row"><span style="--d:.15s">hind</span></span><span class="row"><span class="outline" style="--d:.3s">seddik</span></span></h1>
-      <div class="hero-sub rv" style="--d:.7s"><span>Product Designer</span><span>UX Research</span><span>Design Systems</span><span>AI-augmented</span></div>
+      <p class="hero-sub hero-desc rv" style="--d:.7s">Independent Product Design Consultant · Casablanca · 14 years in design</p>
       <div class="aud rv" style="--d:.85s">
-        <div class="aud-tabs" role="tablist" aria-label="Read this as">
+        <p class="aud-label" id="audLabel">Read this as</p>
+        <div class="aud-tabs" role="tablist" aria-labelledby="audLabel">
           <button type="button" role="tab" aria-selected="true" data-a="0">For anyone</button><button type="button" role="tab" aria-selected="false" data-a="1">Recruiters</button><button type="button" role="tab" aria-selected="false" data-a="2">Product leads</button><button type="button" role="tab" aria-selected="false" data-a="3">Designers</button><button type="button" role="tab" aria-selected="false" data-a="4">Developers</button>
         </div>
-        <p class="aud-text" id="audText" role="tabpanel" aria-live="polite">Product Design Consultant in Casablanca. 14 years turning complex needs into simple products.</p>
+        <p class="aud-text" id="audText" role="tabpanel" aria-live="polite">I lead the research that helps teams decide what to build first. I work with designers and developers from that decision through delivery.</p>
       </div>
     </div>
     <div class="box-stage pf" id="boxStage" aria-label="A cloud of dots that rebuilds itself into each stage of Hind Seddik's process: listen, map, prototype, systemise, measure, ship">
@@ -450,7 +470,7 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
       <div class="pf-canvas-wrap"><canvas id="pfCanvas" aria-hidden="true"></canvas></div>
       <div class="pf-col pf-right">
         <div class="pf-g"><span class="pf-logo"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><circle cx="16.00" cy="4.00" r="1.58"/><circle cx="19.38" cy="4.49" r="1.44"/><circle cx="22.49" cy="5.90" r="1.30"/><circle cx="25.07" cy="8.14" r="1.15"/><circle cx="26.92" cy="11.02" r="1.01"/><circle cx="27.88" cy="14.29" r="0.89"/><circle cx="27.88" cy="17.71" r="0.81"/><circle cx="26.92" cy="20.98" r="0.76"/><circle cx="25.07" cy="23.86" r="0.75"/><circle cx="22.49" cy="26.10" r="0.79"/><circle cx="19.38" cy="27.51" r="0.86"/><circle cx="16.00" cy="28.00" r="0.97"/><circle cx="12.62" cy="27.51" r="1.11"/><circle cx="9.51" cy="26.10" r="1.25"/><circle cx="6.93" cy="23.86" r="1.40"/><circle cx="5.08" cy="20.98" r="1.54"/><circle cx="4.12" cy="17.71" r="1.66"/><circle cx="4.12" cy="14.29" r="1.74"/><circle cx="5.08" cy="11.02" r="1.79"/><circle cx="6.93" cy="8.14" r="1.80"/><circle cx="9.51" cy="5.90" r="1.76"/><circle cx="12.62" cy="4.49" r="1.69"/><circle cx="17.6" cy="14.6" r="3.4"/></svg></span></div>
-        <div class="pf-g"><p>Handle with care <span aria-hidden="true">◇</span></p><p>Contents //</p><p>The process, one dot at a time</p></div>
+        <div class="pf-g"><p>Handle with care <span aria-hidden="true">◇</span></p><p>Contents //</p><p>Six stages of my work</p></div>
         <div class="pf-g pf-stage"><div class="pf-steps" role="group" aria-label="Process stages"><button type="button" aria-pressed="true" aria-label="Listen">01</button><button type="button" aria-pressed="false" aria-label="Map">02</button><button type="button" aria-pressed="false" aria-label="Prototype">03</button><button type="button" aria-pressed="false" aria-label="Systemise">04</button><button type="button" aria-pressed="false" aria-label="Measure">05</button><button type="button" aria-pressed="false" aria-label="Ship">06</button></div>
           <p class="pf-big" id="pfWord" aria-live="polite">listen</p><p id="pfDesc">Interviews, surveys, field visits</p></div>
       </div>
@@ -460,32 +480,32 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
         <p>Lead · UX</p>
         <p>Made with care · Morocco</p>
       </div>
-      <span class="hint"><span class="hide-touch">Drag to turn</span><span class="only-touch">Tap or swipe to change</span></span>
+      <span class="hint">Drag to turn</span>
     </div>
     <span class="scroll-cue">Scroll</span>
   </section>
 
   <section class="sec statement" id="about" data-shape="drift" data-name="About">
     <p class="tag rv">About</p>
-    <p class="lede rv">I work across the whole product process, from discovery to delivery. I run the research and workshops that tell a team <em>what to build first</em>, then stay with designers and developers until it ships.</p>
-    <p class="body-copy rv" style="margin-top:36px;--d:.15s">With 14 years in product design, rooted in multimedia and graphic design, I now lead research, prototyping and design systems for telecom operators, banks and fintechs. I currently lead UX on Orange Maroc's main redesigns.</p>
-    <ul class="values" aria-label="How I work">
-      <li class="rv"><span>Listen first</span><small>Research before pixels</small></li>
-      <li class="rv" style="--d:.08s"><span>Keep it simple</span><small>Complex needs, clear products</small></li>
-      <li class="rv" style="--d:.16s"><span>Test early</span><small>Real users, every round</small></li>
-      <li class="rv" style="--d:.24s"><span>Ship together</span><small>With designers and developers</small></li>
+    <p class="lede rv">I talk to customers and frontline staff to understand where a service breaks down in practice. I bring those findings into workshops with product and business teams so we can agree on <em>what to tackle first</em>.</p>
+    <p class="body-copy rv" style="margin-top:36px;--d:.15s">I work with designers to prototype and test the journeys we prioritise. When the same interaction appears across a product, I help turn it into a shared component. During development, I work with engineers to resolve questions about how it should behave.</p>
+    <ul class="values" aria-label="Where I work">
+      <li class="rv"><span>In the field</span><small>Customers and frontline staff</small></li>
+      <li class="rv" style="--d:.08s"><span>In workshops</span><small>Product and business teams</small></li>
+      <li class="rv" style="--d:.16s"><span>In design reviews</span><small>Designers and developers</small></li>
+      <li class="rv" style="--d:.24s"><span>In testing</span><small>People who use the product</small></li>
     </ul>
   </section>
 
   <section class="sec" id="ai" data-shape="network" data-name="AI">
     <div>
-      <p class="tag rv">AI-augmented design</p>
-      <h2 class="big rv">AI in every <span class="outline">step</span></h2>
-      <p class="body-copy rv">I use AI as a design partner, from the first interview to the coded prototype. It shortens each loop, so teams test more ideas with real users.</p>
+      <p class="tag rv">AI in practice</p>
+      <h2 class="big rv">How I work with <span class="outline">AI</span></h2>
+      <p class="body-copy rv">I use AI to organise research material and build prototypes. I also design the interfaces people use to work with AI products.</p>
       <div class="ai-grid">
-        <div class="rv"><h3>Research</h3><p>AI-assisted synthesis of interviews and feedback into themes, journeys and personas.</p></div>
-        <div class="rv" style="--d:.1s"><h3>Prototyping</h3><p>Flows, UX copy and coded prototypes generated and refined with AI, linked to Figma.</p></div>
-        <div class="rv" style="--d:.2s"><h3>AI products</h3><p>ConverseQuery, a generative-AI chatbot, and MLnetworks' AI telecom platform.</p></div>
+        <div class="rv"><h3>Research synthesis</h3><p>I use AI to group interview notes and feedback into themes. I use those themes to organise findings into journeys and personas.</p></div>
+        <div class="rv" style="--d:.1s"><h3>Prototyping</h3><p>I use AI to draft interface copy and turn Figma flows into working prototypes that a team can try.</p></div>
+        <div class="rv" style="--d:.2s"><h3>AI product design</h3><p>For Intelcia, I designed how people interact with a chatbot. For MLnetworks, I designed how network operators explore predictions and run simulations.</p></div>
       </div>
     </div>
   </section>
@@ -511,22 +531,22 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
   <section class="sec" id="experience" data-shape="orbit" data-name="Experience">
     <div>
       <p class="tag rv">Experience</p>
-      <h2 class="big rv">14 years <span class="outline">of practice</span></h2>
+      <h2 class="big rv">Clients and <span class="outline">career history</span></h2>
       <ul class="xp">
-        <li class="group">Independent consultant · Casablanca · since March 2021</li>
-        <li class="rv"><span class="d">Dec 2025 – now</span><div><p class="co">Orange Maroc</p><h3>Lead UX Designer</h3><p>I lead UX on Max it, Orange.ma, Orange Money and the data dashboards, and help teams adopt a shared UX method as part of Orange's design transformation.</p></div><span class="len">Ongoing</span></li>
-        <li class="rv"><span class="d">Sep – Nov 2025</span><div><p class="co">Al Barid Bank</p><h3>Trainer</h3><p>I designed and delivered a professional training program for 12 groups of employees, from course content to live sessions.</p></div><span class="len">~3 mo</span></li>
-        <li class="rv"><span class="d">May – Aug 2025</span><div><p class="co">BMCE Capital</p><h3>Investment app</h3><p>I designed the BMCE Capital Gestion mobile app, making investment management clear and easy to follow.</p></div><span class="len">~3.5 mo · short</span></li>
-        <li class="rv"><span class="d">Mar – May 2025</span><div><p class="co">Marjane</p><h3>App redesign</h3><p>I turned the Marjane One app redesign into detailed, interactive Figma prototypes.</p></div><span class="len">~2.5 mo · short</span></li>
-        <li class="rv"><span class="d">Dec 2023 – Feb 2025</span><div><p class="co">Label'Vie</p><h3>Merchant &amp; delivery apps</h3><p>I redesigned the merchant and delivery apps with drivers and store managers, simplifying order flows to reduce errors.</p></div><span class="len">15 mo</span></li>
-        <li class="rv"><span class="d">Jun – Nov 2023</span><div><p class="co">MLnetworks</p><h3>AI telecom platform</h3><p>I designed simulation tools and predictive dashboards for an AI platform that helps operators optimise their networks, with teams in the UK, Dubai and India.</p></div><span class="len">6 mo</span></li>
-        <li class="rv"><span class="d">Jan 2022 – May 2023</span><div><p class="co">Crédit du Maroc</p><h3>Banking app &amp; design system</h3><p>I audited the MyCDM app, built its new design system and ran workshops to simplify onboarding and transactions after the acquisition.</p></div><span class="len">17 mo</span></li>
-        <li class="rv"><span class="d">Mar – Dec 2021</span><div><p class="co">Intelcia</p><h3>AI chatbot &amp; internal tools</h3><p>I designed ConverseQuery, a generative-AI chatbot refined over 7 rounds of user testing, plus the MyCapa and Alert'in tools.</p></div><span class="len">~10 mo</span></li>
-        <li class="group">Before</li>
-        <li class="rv"><span class="d">2019 – 2021</span><div><p class="co">Teal Technology Services</p><h3>Senior UX &amp; UI Designer</h3><p>Inside the IBM &amp; OCP joint venture, I ran user interviews and usability tests, built prototypes and shared design components.</p></div><span class="len">1 yr 9 mo</span></li>
-        <li class="rv"><span class="d">2017 – 2019</span><div><p class="co">Piman Group</p><h3>Lead UX &amp; UI Designer</h3><p>I led a team of three designers on “Private Discuss”, a video and messaging platform, and on dashboards for Adecco, Sanofi and STMicroelectronics.</p></div><span class="len">1 yr 8 mo</span></li>
-        <li class="rv"><span class="d">2015 – 2017</span><div><p class="co">BeWorkHappy</p><h3>UX &amp; UI Designer</h3><p>I shaped a recruitment platform built around CV matching, through UX workshops with stakeholders.</p></div><span class="len">2 yr 3 mo</span></li>
-        <li class="rv"><span class="d">2012 – 2015</span><div><p class="co">Freelance</p><h3>Web Designer</h3><p>I designed websites and visual identities for international clients.</p></div><span class="len">2 yr 7 mo</span></li>
+        <li class="group">Independent consulting · Casablanca · March 2021–present</li>
+        <li class="rv"><div><h3>Orange Maroc</h3><p class="co">Lead UX Designer</p><p class="d">Dec 2025–present</p><p>I lead UX across Max it, Orange Money, Orange.ma and internal dashboards. I also work with teams across Orange Maroc to establish a shared approach to research, prototyping and design reviews.</p></div></li>
+        <li class="rv"><div><h3>Al Barid Bank</h3><p class="co">Design thinking training and facilitation</p><p class="d">2026</p><p>I designed and delivered a design thinking programme for 12 groups of employees. Using examples from the daily work of branch managers and customer advisers, I guided participants through journey mapping, idea generation and prioritisation by impact and effort.</p></div></li>
+        <li class="rv"><div><h3>BMCE Capital</h3><p class="co">Digital investment products</p><p class="d">2026</p><p>I designed the BMCE Capital Gestion mobile investment app and contributed to the design of BMCE Capital’s super-app.</p></div></li>
+        <li class="rv"><div><h3>Marjane</h3><p class="co">Interaction design and prototyping</p><p class="d">Mar–May 2025</p><p>I built interactive Figma prototypes for the Marjane One redesign, detailing how customers move through the app.</p></div></li>
+        <li class="rv"><div><h3>Label’Vie</h3><p class="co">Merchant and delivery operations</p><p class="d">Dec 2023–Feb 2025</p><p>I worked with store managers and drivers to redesign the apps they use to handle orders. My focus was simplifying the steps where mistakes could occur.</p></div></li>
+        <li class="rv"><div><h3>MLnetworks</h3><p class="co">Product design for telecom operations</p><p class="d">Jun–Nov 2023</p><p>I designed simulation tools and predictive dashboards for network operators, working with teams in the UK, Dubai and India.</p></div></li>
+        <li class="rv"><div><h3>Crédit du Maroc</h3><p class="co">Mobile banking and design systems</p><p class="d">Jan 2022–May 2023</p><p>I audited the MyCDM banking app after the acquisition and ran workshops on onboarding and transactions. I built the app’s new design system to give those journeys a consistent foundation.</p></div></li>
+        <li class="rv"><div><h3>Intelcia</h3><p class="co">Conversational AI and internal tools</p><p class="d">Mar–Dec 2021</p><p>I designed ConverseQuery and refined its interactions over seven rounds of user testing. My work also covered two internal tools, MyCapa and Alert’in.</p></div></li>
+        <li class="group">Earlier career</li>
+        <li class="rv"><div><h3>Teal Technology Services</h3><p class="co">Senior UX &amp; UI Designer</p><p class="d">2019–2021</p><p>At the IBM and OCP joint venture, I ran user interviews and usability tests, built prototypes and developed components for the team to reuse.</p></div></li>
+        <li class="rv"><div><h3>PIMAN Group</h3><p class="co">Lead UX &amp; UI Designer</p><p class="d">2017–2019</p><p>I led three designers working on Private Discuss, a video and messaging platform, and on dashboards for Adecco, Sanofi and STMicroelectronics.</p></div></li>
+        <li class="rv"><div><h3>BeWorkHappy</h3><p class="co">UX &amp; UI Designer</p><p class="d">2015–2017</p><p>I ran workshops with stakeholders to shape a recruitment platform built around CV matching.</p></div></li>
+        <li class="rv"><div><h3>Freelance</h3><p class="co">Web Designer</p><p class="d">2012–2015</p><p>I designed websites for international clients.</p></div></li>
       </ul>
     </div>
   </section>
@@ -534,11 +554,11 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
   <section class="sec" id="toolkit" data-shape="grid" data-name="Toolkit">
     <div>
       <p class="tag rv">Toolkit</p>
-      <h2 class="big rv">How I <span class="outline">work</span></h2>
+      <h2 class="big rv">Methods and <span class="outline">tools</span></h2>
       <div class="kit">
-        <div class="rv"><h3>Skills</h3><div class="chips"><span class="hl">AI-augmented design</span><span>Design Thinking</span><span>Design sprints</span><span>Workshop facilitation</span><span>User research</span><span>Personas &amp; journeys</span><span>Service blueprints</span><span>Advanced prototyping</span><span>Usability testing</span><span>Design systems</span><span>Accessibility</span><span>Micro-interactions</span></div></div>
-        <div class="rv" style="--d:.1s"><h3>Tools &amp; languages</h3>
-          <ul class="list"><li><span>Figma</span><span>Expert</span></li><li><span>Claude · ChatGPT</span><span>AI · Daily</span></li><li><span>Miro · Maze</span><span>Expert</span></li><li><span>Jira · Confluence · Notion</span><span>Advanced</span></li><li><span>Arabic</span><span>Native</span></li><li><span>French · English</span><span>Fluent</span></li></ul>
+        <div class="rv"><h3>Methods</h3><div class="chips"><span>Design sprints</span><span>Workshop facilitation</span><span>User interviews</span><span>Journey mapping</span><span>Service blueprinting</span><span>Usability testing</span><span>Interaction design</span><span>Design systems</span></div></div>
+        <div class="rv" style="--d:.1s"><h3>Tools and languages</h3>
+          <ul class="list"><li><span>Figma</span><span>Interface design and prototyping</span></li><li><span>Claude · ChatGPT</span><span>Research synthesis and coded prototypes</span></li><li><span>Miro · Maze</span><span>Workshops and usability testing</span></li><li><span>Jira · Confluence · Notion</span><span>Delivery and documentation</span></li><li><span>Arabic</span><span>Native</span></li><li><span>French · English</span><span>Fluent</span></li></ul>
         </div>
         <div class="rv"><h3>Certifications</h3>
           <ul class="list">
@@ -551,9 +571,9 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
           </ul>
         </div>
         <div class="rv" style="--d:.1s"><h3>Education</h3>
-          <ul class="list"><li><span>DEES Multimedia &amp; Digital Design</span><span>2011 – 12</span></li><li><span>Visual Design &amp; Multimedia</span><span>2009 – 11</span></li></ul>
-          <h3 style="margin-top:34px">Values</h3>
-          <div class="chips"><span>Effortless</span><span>Purpose-driven</span><span>Engaging</span><span>Thoughtfully crafted</span></div>
+          <ul class="list"><li><span>DEES Multimedia &amp; Digital Design</span><span>2011–2012</span></li><li><span>Visual Design &amp; Multimedia</span><span>2009–2011</span></li></ul>
+          <h3 style="margin-top:34px">What I look for in a design</h3>
+          <div class="chips"><span>Clear language</span><span>Accessible interactions</span><span>Consistent behaviour</span><span>Attention to detail</span></div>
         </div>
       </div>
     </div>
@@ -572,9 +592,9 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
 
   <section class="sec contact" id="contact" data-shape="ring" data-name="Contact">
     <p class="tag rv">Contact</p>
-    <h2 class="big rv">Let's design <span class="outline">what's next</span></h2>
+    <h2 class="big rv">Bring me in for UX leadership, research or <span class="outline">a product redesign.</span></h2>
     <a class="mail rv" href="mailto:hinadek@gmail.com">hinadek@gmail.com</a>
-    <div class="contact-meta rv"><span>+212 6 63 72 35 44</span><span>Casablanca, Morocco</span><span>Available for missions</span></div>
+    <div class="contact-meta rv"><span>+212 6 63 72 35 44</span><span>Casablanca, Morocco</span><span>Available for consulting engagements</span></div>
     <div class="contact-actions rv">
       <button class="pill" type="button" id="copyMail">Copy email</button>
       <a class="pill solid" href="https://www.linkedin.com/in/hind-seddik/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -582,7 +602,7 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
   </section>
 </main>
 
-<footer class="site"><span>© 2026 Hind Seddik</span><span>Designed &amp; coded with AI</span></footer>
+<footer class="site"><span>© 2026 Hind Seddik</span><span>Designed and coded with AI</span></footer>
 
 <script>
 (function () {
@@ -767,11 +787,11 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
   secs.forEach((sec, i) => { const li = document.createElement('li'), a = document.createElement('a'); a.href = '#' + sec.id; a.textContent = sec.dataset.name; if (!i) a.setAttribute('aria-current', 'true'); li.appendChild(a); navEl.appendChild(li); });
   new MutationObserver(() => { const n = nameEl.textContent; navEl.querySelectorAll('a').forEach(a => a.setAttribute('aria-current', a.textContent === n ? 'true' : 'false')); }).observe(nameEl, { childList: true });
   const AUD = [
-    "Product Design Consultant in Casablanca. 14 years turning complex needs into simple products.",
-    "Lead Product Designer with 14 years in banking, telecom and fintech, currently Lead UX at Orange Maroc. Based in Casablanca, working in Arabic, French and English.",
-    "I help teams decide what to build first: research and workshops up front, then prototypes tested with real users before anything ships.",
-    "I care about the system behind the screens: shared components, clear foundations and a UX method the whole team can follow.",
-    "I stay close until it ships: tidy Figma handoff, coded prototypes and design systems built to be reused."
+    "I lead the research that helps teams decide what to build first. I work with designers and developers from that decision through delivery.",
+    "I lead UX across several products at Orange Maroc. My experience spans banking, telecom and retail, and I work in Arabic, French and English.",
+    "I help you decide which problem to tackle first, what belongs in the first release and what to test before committing to a build.",
+    "I bring user research into design reviews. Together, we decide where a flow needs more work and which patterns belong in the design system.",
+    "I use Figma and coded prototypes to show how an interaction should behave. During the build, I work with you to resolve the details."
   ];
   const audText = document.getElementById('audText'), audBtns = [...document.querySelectorAll('.aud-tabs button')];
   audBtns.forEach(b => b.addEventListener('click', () => {
@@ -801,7 +821,8 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
 
   document.getElementById('copyMail').addEventListener('click', function () {
     const b = this, done = () => { b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy email', 1800); };
-    if (navigator.clipboard) navigator.clipboard.writeText('hinadek@gmail.com').then(done, () => {});
+    const fallback = () => { const t = document.createElement('textarea'); t.value = 'hinadek@gmail.com'; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try { if (document.execCommand('copy')) done(); } catch (e) {} t.remove(); };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText('hinadek@gmail.com').then(done, fallback); else fallback();
   });
 
   const clk=document.getElementById('clock');
@@ -816,11 +837,11 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
     const G = () => (R() + R() + R() - 1.5) * 1.15;
     const STAGES = [
       { n: '01', w: 'listen', d: 'Interviews, surveys, field visits', gen: listen },
-      { n: '02', w: 'map', d: 'Journeys and pain points', gen: map },
-      { n: '03', w: 'prototype', d: 'Flows tested with users', gen: proto },
-      { n: '04', w: 'systemise', d: 'Tokens and components', gen: system },
-      { n: '05', w: 'measure', d: 'Data dashboards', gen: measure },
-      { n: '06', w: 'ship', d: 'With designers and developers', gen: ship }
+      { n: '02', w: 'map', d: 'Journeys and service blueprints', gen: map },
+      { n: '03', w: 'prototype', d: 'Flows, screens and interactions', gen: proto },
+      { n: '04', w: 'systemise', d: 'Shared patterns and components', gen: system },
+      { n: '05', w: 'measure', d: 'Usability tests and product data', gen: measure },
+      { n: '06', w: 'ship', d: 'Handoff and implementation review', gen: ship }
     ];
     // 01 voices gathered into clusters of insight (affinity map on a sphere)
     function listen(i) {
@@ -909,10 +930,10 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
     let W = 0, H = 0, S = 1;
     function size() { const r = cvs.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height; cvs.width = W * dpr; cvs.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0); S = Math.min(W / 124, H / 124) * .98; if (reduce) draw(); }
     let off = 0, drag = null, tt = 0;
-    let tapX = null;
-    cvs.addEventListener('touchstart', e => { tapX = e.touches[0].clientX; }, { passive: true });
-    cvs.addEventListener('touchend', e => { if (tapX === null) return; const dx = e.changedTouches[0].clientX - tapX; tapX = null; go(idx + (dx > 40 ? -1 : 1), true); }, { passive: true });
-    stage.addEventListener('pointerdown', e => { if (e.pointerType === 'touch') return; drag = { x: e.clientX, off }; stage.setPointerCapture(e.pointerId); });
+    let tap = null;
+    cvs.addEventListener('touchstart', e => { tap = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }, { passive: true });
+    cvs.addEventListener('touchend', e => { if (!tap) return; const t1 = e.changedTouches[0]; if (Math.abs(t1.clientX - tap.x) < 8 && Math.abs(t1.clientY - tap.y) < 8) go(idx + 1, true); tap = null; }, { passive: true });
+    stage.addEventListener('pointerdown', e => { if (e.target.closest('button, a')) return; drag = { x: e.clientX, off }; if (e.pointerType !== 'touch') stage.setPointerCapture(e.pointerId); });
     stage.addEventListener('pointermove', e => { if (drag) off = drag.off + (e.clientX - drag.x) * .008; });
     const end = () => { drag = null; }; stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
     const HOLD = 3400, MOVE = 1500;
