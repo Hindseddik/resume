@@ -8,7 +8,9 @@
 <meta name="description" content="Hind Seddik, Product Design Consultant in Casablanca. UX research, prototyping, design systems and AI-augmented design for telecom, banking, fintech and retail.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600&display=swap"></noscript>
 <style>
 /* Layout: a fixed starfield canvas behind a left-weighted reading column; particles take a new shape for each section on the right. Corner labels frame the screen like an instrument. */
 :root {
@@ -338,7 +340,7 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .marquee .track { animation: none; }
+  
   .js .rv, .js .hero-name .row > span { opacity: 1; transform: none; transition: none; }
 }
 
@@ -371,6 +373,47 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
 .c-bl a:hover { color: var(--ink); }
 .c-bl a[aria-current="true"] { color: var(--ink); padding-left: 10px; position: relative; }
 .c-bl a[aria-current="true"]::before { content: ""; position: absolute; left: 0; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: var(--ink); }
+
+/* Clients grid (replaces the marquee) */
+.clients { position: relative; z-index: 2; padding: 40px 0 20px; max-width: 1240px; margin: 0 auto; }
+.client-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.client-grid li { display: flex; flex-direction: column; justify-content: space-between; gap: 18px; min-height: 132px; padding: 18px 18px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .4s, color .4s; }
+.cl-n { font: 300 clamp(22px, 2.2vw, 30px)/1.05 var(--f-display); letter-spacing: -.035em; color: var(--ink); transition: color .4s; }
+.cl-s { font: 400 10px/1.3 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); transition: color .4s; }
+.cl-more .cl-n { font-family: var(--f-accent); font-style: italic; letter-spacing: -.01em; }
+@media (hover: hover) { .client-grid li:hover { background: var(--ink); } .client-grid li:hover .cl-n, .client-grid li:hover .cl-s { color: var(--space); } }
+@media (max-width: 1000px) { .client-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .client-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .client-grid li { min-height: 104px; padding: 14px 14px 12px; gap: 12px; } .cl-n { font-size: 21px; } .cl-s { font-size: 9px; letter-spacing: .12em; } }
+
+/* ---------- Phones ---------- */
+@media (max-width: 860px) {
+  .crop { display: none; }
+  /* section counter becomes a thin progress line at the very top */
+  .c-br { top: 0; bottom: auto; left: 0; right: 0; gap: 0; z-index: 6; }
+  .c-br > span:not(.progress) { display: none; }
+  .c-br .progress { width: 100%; height: 2px; background: transparent; }
+  .scroll-cue { display: none; }
+  /* hero: name, then the process engine, then its stage controls */
+  .hero { padding-top: calc(96px + env(safe-area-inset-top, 0px)); }
+  .box-stage.pf { margin-top: 28px; max-width: none; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .pf-canvas-wrap { height: min(92vw, 380px); }
+  .pf-left, .pf-right > .pf-g:not(.pf-stage) { display: none; }
+  .pf-col.pf-right { padding-block: 8px 0; }
+  .pf-stage { display: grid; justify-items: center; text-align: center; }
+  .pf-steps { grid-template-columns: repeat(6, auto); justify-content: center; margin-bottom: 16px; }
+  .pf-steps button { padding: 9px 9px; font-size: 11px; }
+  .pf-stage p.pf-big { font-size: 34px; }
+  .pf-stage p#pfDesc { min-height: 0; margin-top: 10px; }
+  .pf-foot { margin-top: 22px; gap: 12px 18px; }
+  .pf-foot > p:last-child { display: none; }
+  .box-stage.pf .hint { position: static; transform: none; display: block; text-align: center; margin-top: 14px; }
+  /* touch: lines and chips animate when they scroll into view instead of on hover */
+  .xp li.in::after { transform: scaleX(1); transition-delay: .35s; }
+  .hero .rv { transition-duration: .8s; --d: .25s !important; }
+  .js .hero-name .row > span { transition-duration: 1s; }
+}
+.only-touch { display: none; }
+@media (hover: none) { .only-touch { display: inline; } .hide-touch { display: none; } }
 </style>
 </head>
 <body>
@@ -417,7 +460,7 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
         <p>Lead · UX</p>
         <p>Made with care · Morocco</p>
       </div>
-      <span class="hint">Drag to turn</span>
+      <span class="hint"><span class="hide-touch">Drag to turn</span><span class="only-touch">Tap or swipe to change</span></span>
     </div>
     <span class="scroll-cue">Scroll</span>
   </section>
@@ -447,11 +490,22 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
     </div>
   </section>
 
-  <div class="marquee" aria-label="Clients">
-    <div class="track" aria-hidden="true">
-      <span>Orange Maroc</span><span>Orange Money</span><span>Crédit du Maroc</span><span>BMCE Capital</span><span>Al Barid Bank</span><span>Intelcia</span><span>MLnetworks</span><span>Label'Vie</span><span>Marjane</span><span>OCP</span><span>Sanofi</span>
-      <span>Orange Maroc</span><span>Orange Money</span><span>Crédit du Maroc</span><span>BMCE Capital</span><span>Al Barid Bank</span><span>Intelcia</span><span>MLnetworks</span><span>Label'Vie</span><span>Marjane</span><span>OCP</span><span>Sanofi</span>
-    </div>
+  <div class="clients" aria-labelledby="clientsTitle">
+    <p class="tag rv" id="clientsTitle">Clients and partners</p>
+    <ul class="client-grid">
+      <li class="rv" style="--d:0.00s"><span class="cl-n">Orange Maroc</span><span class="cl-s">Telecom</span></li>
+      <li class="rv" style="--d:0.06s"><span class="cl-n">Orange Money</span><span class="cl-s">Fintech</span></li>
+      <li class="rv" style="--d:0.12s"><span class="cl-n">Crédit du Maroc</span><span class="cl-s">Banking</span></li>
+      <li class="rv" style="--d:0.18s"><span class="cl-n">BMCE Capital</span><span class="cl-s">Asset management</span></li>
+      <li class="rv" style="--d:0.00s"><span class="cl-n">Al Barid Bank</span><span class="cl-s">Banking</span></li>
+      <li class="rv" style="--d:0.06s"><span class="cl-n">Intelcia</span><span class="cl-s">Customer experience</span></li>
+      <li class="rv" style="--d:0.12s"><span class="cl-n">MLnetworks</span><span class="cl-s">Telecom AI</span></li>
+      <li class="rv" style="--d:0.18s"><span class="cl-n">Label'Vie</span><span class="cl-s">Retail</span></li>
+      <li class="rv" style="--d:0.00s"><span class="cl-n">Marjane</span><span class="cl-s">Retail</span></li>
+      <li class="rv" style="--d:0.06s"><span class="cl-n">OCP</span><span class="cl-s">Industry</span></li>
+      <li class="rv" style="--d:0.12s"><span class="cl-n">Sanofi</span><span class="cl-s">Healthcare</span></li>
+      <li class="rv cl-more" style="--d:.18s"><span class="cl-n">+ many more</span><span class="cl-s">Since 2012</span></li>
+    </ul>
   </div>
 
   <section class="sec" id="experience" data-shape="orbit" data-name="Experience">
@@ -540,6 +594,9 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
 
   function resize() {
     DPR = Math.min(window.devicePixelRatio || 1, 2);
+    // phones resize the viewport when the address bar slides; only rebuild when the width changes
+    const widthChanged = innerWidth !== W;
+    if (!widthChanged && stars.length) { H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); return; }
     W = innerWidth; H = innerHeight;
     cv.width = W * DPR; cv.height = H * DPR;
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -614,6 +671,7 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
   };
 
   function morph(name, instant) {
+    if (!W || !H || innerWidth < 2) return;
     current = name;
     off.width = W; off.height = H;
     octx.clearRect(0, 0, W, H); octx.fillStyle = '#fff'; octx.strokeStyle = '#fff';
@@ -625,7 +683,7 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
       for (let i = pts.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [pts[i], pts[j]] = [pts[j], pts[i]]; }
     }
     if (pts.length) { let sx = 0, sy = 0; const n = Math.min(pts.length, parts.length); for (let i = 0; i < n; i++) { sx += pts[i][0]; sy += pts[i][1]; } center = { x: sx / n, y: sy / n }; }
-    const faint = mobile() ? .38 : .9;
+    const faint = mobile() ? .55 : .9;
     parts.forEach((p, i) => {
       if (i < pts.length) { p.tx = pts[i][0] + (Math.random() - .5) * 2; p.ty = pts[i][1] + (Math.random() - .5) * 2; p.ta = faint * (.55 + Math.random() * .45); p.tz = (Math.random() - .5) * 90; p.shape = true; }
       else { p.tx = Math.random() * W; p.ty = Math.random() * H; p.ta = .12 + Math.random() * .25; p.tz = 0; p.shape = false; }
@@ -664,7 +722,8 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
       ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.29); ctx.fill();
     }
     const mx = mouse.x > 0 ? mouse.x / W - .5 : 0, my = mouse.y > 0 ? mouse.y / H - .5 : 0;
-    const ry = Math.sin(t * .35) * .5 + mx * .6, rx = Math.sin(t * .27) * .14 + my * .35;
+    const spin = mobile() ? scrollY * .0016 : 0;
+    const ry = Math.sin(t * .35) * .5 + mx * .6 + spin, rx = Math.sin(t * .27) * .14 + my * .35;
     const cy3 = Math.cos(ry), sy3 = Math.sin(ry), cx3 = Math.cos(rx), sx3 = Math.sin(rx);
     for (const p of parts) {
       const dx = p.x - mouse.x, dy = p.y - mouse.y, d2 = dx * dx + dy * dy;
@@ -693,6 +752,10 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
 
   addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
   addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+  // touch: the finger pushes the dots aside, then they settle back
+  addEventListener('touchstart', e => { const t0 = e.touches[0]; mouse.x = t0.clientX; mouse.y = t0.clientY; }, { passive: true });
+  addEventListener('touchmove', e => { const t0 = e.touches[0]; mouse.x = t0.clientX; mouse.y = t0.clientY; }, { passive: true });
+  addEventListener('touchend', () => { setTimeout(() => { mouse.x = mouse.y = -9999; }, 250); }, { passive: true });
   let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 150); });
 
   // Section tracking: morph particles, update corner labels and progress
@@ -748,7 +811,7 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
   (function () {
     const stage = document.getElementById('boxStage'), cvs = document.getElementById('pfCanvas');
     if (!stage || !cvs) return;
-    const g = cvs.getContext('2d'), N = 2400;
+    const g = cvs.getContext('2d'), N = innerWidth < 860 ? 1600 : 2400;
     let seed = 7; const R = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
     const G = () => (R() + R() + R() - 1.5) * 1.15;
     const STAGES = [
@@ -828,7 +891,7 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
 
     // Stage labels in the right column
     const big = document.getElementById('pfWord'), desc = document.getElementById('pfDesc'), steps = [...document.querySelectorAll('.pf-steps button')];
-    let idx = 0, t0 = performance.now(), auto = !reduce;
+    let idx = 0, t0 = performance.now(), auto = true;
     function go(k, user) {
       for (let i = 0; i < N * 4; i++) from[i] = cur[i];
       idx = (k + STAGES.length) % STAGES.length; t0 = performance.now();
@@ -836,15 +899,20 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
       big.textContent = STAGES[idx].w; desc.textContent = STAGES[idx].d;
       big.classList.remove('swap'); void big.offsetWidth; big.classList.add('swap');
       steps.forEach((b, j) => b.setAttribute('aria-pressed', j === idx ? 'true' : 'false'));
-      if (reduce) draw();
+      if (reduce) { cvs.style.opacity = 0; setTimeout(() => { draw(); cvs.style.opacity = 1; }, 220); }
     }
+    // with Reduce Motion on, stages still change, as a soft fade instead of flying dots
+    if (reduce) { cvs.style.transition = 'opacity .5s ease'; setInterval(() => { if (auto && !document.hidden) go(idx + 1); }, 5200); }
     steps.forEach((b, j) => b.addEventListener('click', e => { e.stopPropagation(); go(j, true); }));
     steps.forEach(b => b.addEventListener('pointerdown', e => e.stopPropagation()));
 
     let W = 0, H = 0, S = 1;
     function size() { const r = cvs.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height; cvs.width = W * dpr; cvs.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0); S = Math.min(W / 124, H / 124) * .98; if (reduce) draw(); }
     let off = 0, drag = null, tt = 0;
-    stage.addEventListener('pointerdown', e => { drag = { x: e.clientX, off }; stage.setPointerCapture(e.pointerId); });
+    let tapX = null;
+    cvs.addEventListener('touchstart', e => { tapX = e.touches[0].clientX; }, { passive: true });
+    cvs.addEventListener('touchend', e => { if (tapX === null) return; const dx = e.changedTouches[0].clientX - tapX; tapX = null; go(idx + (dx > 40 ? -1 : 1), true); }, { passive: true });
+    stage.addEventListener('pointerdown', e => { if (e.pointerType === 'touch') return; drag = { x: e.clientX, off }; stage.setPointerCapture(e.pointerId); });
     stage.addEventListener('pointermove', e => { if (drag) off = drag.off + (e.clientX - drag.x) * .008; });
     const end = () => { drag = null; }; stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
     const HOLD = 3400, MOVE = 1500;
@@ -881,15 +949,26 @@ footer.site { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto;
         g.fillRect(ox + x1 * f * S - sz / 2, oy + y1 * f * S - sz / 2, sz, sz);
       }
       g.globalAlpha = 1;
-      if (!reduce) requestAnimationFrame(draw);
+      if (!reduce && onScreen) requestAnimationFrame(draw); else running = false;
     }
+    // only animate while the engine is on screen (saves battery on phones)
+    let onScreen = true, running = true;
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => { onScreen = es[0].isIntersecting; if (onScreen && !running && !reduce) { running = true; requestAnimationFrame(draw); } }).observe(cvs);
     size(); addEventListener('resize', size);
     cur.set(from); go(0); draw();
   })();
 
-  const start = () => { resize(); document.documentElement.classList.add('loaded'); onScroll(); frame(); };
-  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start);
-  setTimeout(() => document.documentElement.classList.add('loaded'), 1500);
+  // start the page even if a measurement fails (e.g. a phone reporting a 0px viewport for a moment)
+  let started = false;
+  const start = () => {
+    if (started) return; started = true;
+    document.documentElement.classList.add('loaded');
+    try { resize(); } catch (e) { setTimeout(() => { try { resize(); } catch (_) {} }, 300); }
+    try { onScroll(); } catch (e) {}
+    frame();
+  };
+  // start straight away: fonts swap in when ready, so nothing waits on the network
+  start();
 })();
 </script>
 </body>
